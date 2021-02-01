@@ -1,14 +1,22 @@
-import "./App.css";
-// import Products from "./components/Products";
-
-import { Products, Navbar } from "./components";
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Products, Navbar, Cart } from "./components";
 
 function App() {
   return (
-    <div>
-      <Navbar />
-      <Products />
-    </div>
+    <Router>
+      <div>
+        <Navbar />
+        <Switch>
+          <Route exact path="/">
+            <Products />
+          </Route>
+          <Route path="/cart">
+            <Cart />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
