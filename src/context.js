@@ -6,6 +6,15 @@ const AppContext = createContext();
 const AppProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState({});
+
+  // const [shippingCountries, setShippingCountries] = useState([]);
+  // const [shippingCountry, setShippingCountry] = useState("");
+  // const [shippingSubdivisions, setShippingSubdivisions] = useState([]);
+  // const [shippingSubdivision, setShippingSubdivision] = useState("");
+  // const [shippingOptions, setShippingOptions] = useState([]);
+  // const [shippingOption, setShippingOption] = useState("");
+  // const [checkoutToken, setCheckoutToken] = useState(null);
+
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
     setProducts(data);
@@ -31,9 +40,23 @@ const AppProvider = ({ children }) => {
     setCart(cart);
   };
 
+  // checkout
+  // const generateToken = async () => {
+  //   try {
+  //     const token = await commerce.checkout.generateToken(cart.id, {
+  //       type: "cart",
+  //     });
+  //     console.log(token);
+  //     setCheckoutToken(token);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
   useEffect(() => {
     fetchProducts();
     fetchCart();
+    // generateToken();
   }, []);
 
   return (

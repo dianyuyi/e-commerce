@@ -21,8 +21,8 @@ import { useGlobalContext } from "../../context";
 // ];
 
 const Products = () => {
-  const classes = useStyles();
   const { products, handleAddToCart } = useGlobalContext();
+  const classes = useStyles();
   return (
     <main className={classes.content}>
       <div className={classes.toolbar} />
