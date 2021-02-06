@@ -22,7 +22,26 @@ const Checkout = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [checkoutToken, setCheckoutToken] = useState(null);
   const [shippingData, setShippingData] = useState({});
-  const { cart } = useGlobalContext();
+  const { cart, setCart } = useGlobalContext();
+
+  const [order, setOrder] = useState({});
+  const [errorMsg, setErrorMsg] = useState("");
+  const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
+    try {
+      const incomingOrder = await commerce.checkout.capture(
+        checkoutTokenId,
+        newOrder
+      );
+      setOrder(incomingOrder);
+      refreshCart();
+    } catch (error) {
+      setErrorMsg(error.data.error.message);
+    }
+  };
+  const refreshCart = async () => {
+    const newCart = await commerce.cart.refresh();
+    setCart(newCart);
+  };
 
   useEffect(() => {
     if (cart.id) {
@@ -62,6 +81,7 @@ const Checkout = () => {
         shippingData={shippingData}
         nextStep={nextStep}
         backStep={backStep}
+        handleCaptureCheckout={handleCaptureCheckout}
       />
     );
 
