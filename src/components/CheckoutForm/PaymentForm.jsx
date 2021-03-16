@@ -33,7 +33,7 @@ const PaymentForm = ({
     } else {
       const orderData = {
         line_items: checkoutToken.live.line_items,
-        customs: {
+        customer: {
           firstname: shippingData.firstName,
           lastname: shippingData.lastName,
           email: shippingData.email,
@@ -41,8 +41,8 @@ const PaymentForm = ({
         shipping: {
           name: "primary",
           street: shippingData.address,
-          town_city: shippingData.city,
-          country_state: shippingData.shippingSubdivision,
+          town_city: shippingData.City,
+          county_state: shippingData.shippingSubdivision,
           postal_zip_code: shippingData.zip,
           country: shippingData.shippingCountry,
         },

@@ -26,6 +26,11 @@ const Checkout = () => {
 
   const [order, setOrder] = useState({});
   const [errorMsg, setErrorMsg] = useState("");
+
+  const refreshCart = async () => {
+    const newCart = await commerce.cart.refresh();
+    setCart(newCart);
+  };
   const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
     try {
       const incomingOrder = await commerce.checkout.capture(
@@ -37,10 +42,6 @@ const Checkout = () => {
     } catch (error) {
       setErrorMsg(error.data.error.message);
     }
-  };
-  const refreshCart = async () => {
-    const newCart = await commerce.cart.refresh();
-    setCart(newCart);
   };
 
   useEffect(() => {

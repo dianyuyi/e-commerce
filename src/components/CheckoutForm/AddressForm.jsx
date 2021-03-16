@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import {
   InputLabel,
@@ -101,7 +101,7 @@ const AddressForm = ({ checkoutToken, next }) => {
             <FormInput name="lastName" label="Last name" />
             <FormInput name="address" label="Address" />
             <FormInput name="email" label="Email" />
-            <FormInput name="City" label="city" />
+            <FormInput name="City" label="City" />
             <FormInput name="ZIP" label="ZIP / Postal code" />
             <Grid item xs={12} sm={6}>
               <InputLabel>Shipping Country</InputLabel>
